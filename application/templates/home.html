@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% block body %}
+<h2>Your Tasks are</h2>
+{% for output in output %}
+    <span style="line-height: 3em;  background: rgb(205, 243, 250);"><br>{{output}}</span>
+{% endfor %}
+{% endblock body %}
