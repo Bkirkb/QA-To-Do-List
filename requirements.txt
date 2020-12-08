@@ -8,3 +8,7 @@ pkg-resources==0.0.0
 PyMySQL==0.10.1
 SQLAlchemy==1.3.20
 Werkzeug==1.0.1
+<<<<<<< HEAD
+=======
+pytz==2020.4
+>>>>>>> 5c1e5e758f5a78ca6245760078a8362c300c93c9
