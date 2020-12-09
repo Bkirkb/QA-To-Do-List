@@ -1,0 +1,11 @@
+<html>
+    <body>
+        <h1>Task Manager - {{title }}</h1>
+        <nav style="list-style: none;">
+            <li><a href="{{url_for('home') }}">Home</a></li>
+            <li><a href="{{url_for('create') }}">Create Task</a></li> 
+        </nav>
+        {% block body %}
+        {% endblock body %}
+    </body>
+</html>
