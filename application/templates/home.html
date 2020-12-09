@@ -5,6 +5,13 @@
     {% if task.complete == False %}
         {{task.description}}
         {{task.date_created}}
+        <br>
+        <form action="{{url_for('update', id=task.id) }}">
+        <input type=submit value="Update">
+        </form>
+        <form action="{{url_for('delete', id=task.id) }}">
+            <input type=submit value="Delete">
+        </form>
         <br><br>
     {% endif %}
 {% endfor %}
@@ -15,6 +22,13 @@
         {{task.description}}
         {{task.date_created}}
         <br>
+        <form action="{{url_for('update', id=task.id) }}">
+        <input type=submit value="Delete">
+        </form>
+        <form action="{{url_for('delete', id=task.id) }}">
+            <input type=submit value="Delete" style="display: flex;">
+        </form>
+        <br><br>
     {% endif %}
 {% endfor %}
 
