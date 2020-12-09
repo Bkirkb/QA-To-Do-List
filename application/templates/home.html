@@ -1,7 +1,21 @@
 {% extends "layout.html" %}
 {% block body %}
-<h2>Your Tasks are</h2>
-{% for output in output %}
-    <span style="line-height: 3em;  background: rgb(205, 243, 250);"><br>{{output}}</span>
+<h2>Your Incomplete Tasks are</h2>
+{% for task in all_tasks %}
+    {% if task.complete == False %}
+        {{task.description}}
+        {{task.date_created}}
+        <br><br>
+    {% endif %}
 {% endfor %}
+
+<h2>Your Complete Tasks are</h2>
+{% for task in all_tasks %}
+    {% if task.complete == True %}
+        {{task.description}}
+        {{task.date_created}}
+        <br>
+    {% endif %}
+{% endfor %}
+
 {% endblock body %}
