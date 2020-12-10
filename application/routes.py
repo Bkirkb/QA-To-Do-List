@@ -21,19 +21,21 @@ def create():
             return redirect(url_for("home"))
     return render_template('add.html', title="Create a Task", form=form)
 
-@app.route('/complete/<int:id>')
-def complete(id):
-    task = Tasks.query.filter_by(id=id).first()
-    task.complete = True
-    db.session.commit()
-    return "Task " + str(id) + " Is now complete"
 
-@app.route('/incomplete/<int:id>')
-def incomplete(id):
+@app.route('/change/<int:id>', methods=["GET","POST"])
+def change(id):
+    form=TaskForm()
+    all_tasks = Tasks.query.all()
     task = Tasks.query.filter_by(id=id).first()
-    task.complete = False
-    db.session.commit()
-    return "Task " + str(id) + " Is now incomplete"
+    if task.complete == True:
+        task.complete = False
+        db.session.commit()
+    elif task.complete == False:
+        task.complete = True
+        db.session.commit()
+    else:
+        task.complete = task.complete
+    return render_template("home.html", form=form, task=task, all_tasks=all_tasks)
 
 @app.route('/update/<int:id>', methods=["GET", "POST"])
 def update(id):
@@ -45,7 +47,7 @@ def update(id):
         return redirect(url_for("home"))
     return render_template("update.html", form=form, title="Update Task",task=task)
 
-@app.route('/delete/<int:id>', methods=["GET","POST"])
+@app.route('/delete/<int:id>', methods=["GET"])
 def delete(id):
     task = Tasks.query.filter_by(id=id).first()
     db.session.delete(task)
